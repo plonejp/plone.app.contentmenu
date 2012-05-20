@@ -699,12 +699,10 @@ class WorkflowMenu(BrowserMenu):
             if action['category'] != 'workflow':
                 continue
 
-            cssClass = 'kssIgnore'
             actionUrl = action['url']
             if actionUrl == "":
                 actionUrl = '%s/content_status_modify?workflow_action=%s' % (
                     context.absolute_url(), action['id'])
-                cssClass = ''
 
             description = ''
 
@@ -718,7 +716,6 @@ class WorkflowMenu(BrowserMenu):
                         baseUrl = '%s/content_status_modify?workflow_action=%s'
                         actionUrl = baseUrl % (context.absolute_url(),
                                                action['id'])
-                        cssClass = ''
                     break
 
             if action['allowed']:
@@ -731,7 +728,7 @@ class WorkflowMenu(BrowserMenu):
                     'extra': {
                         'id': 'workflow-transition-%s' % action['id'],
                         'separator': None,
-                        'class': cssClass},
+                        'class': ''},
                     'submenu': None,
                 })
 
@@ -747,7 +744,7 @@ class WorkflowMenu(BrowserMenu):
                 'extra': {
                     'id': 'advanced',
                     'separator': 'actionSeparator',
-                    'class': 'kssIgnore'},
+                    'class': ''},
                 'submenu': None,
             })
 
@@ -762,7 +759,7 @@ class WorkflowMenu(BrowserMenu):
                     'selected': False,
                     'icon': None,
                     'extra': {'id': 'policy', 'separator': None,
-                              'class': 'kssIgnore'},
+                              'class': ''},
                     'submenu': None,
                 })
 
