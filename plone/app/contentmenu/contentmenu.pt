@@ -9,7 +9,7 @@
 
         <dl class="actionMenu deactivated"
             tal:attributes="id menuItem/extra/id"
-            tal:define="submenu menuItem/submenu">
+            tal:define="submenu menuItem/submenu;">
           <dt tal:define="state_class menuItem/extra/class | nothing;
                           state_class python:state_class and state_class or ''"
               tal:attributes="class string:actionMenuHeader label-${state_class}">
@@ -18,7 +18,9 @@
               tal:omit-tag="not:menuItem/action"
               tal:attributes="action menuItem/action">
               <input type="hidden" tal:replace="structure authenticator" />
-              <button tal:attributes="title menuItem/description" i18n:attributes="title"
+              <button tal:attributes="title menuItem/description;
+                                      name menuItem/extra/id;"
+                  i18n:attributes="title"
                   type="submit">
                 <span tal:content="menuItem/title"
                       i18n:translate="">
@@ -46,7 +48,8 @@
                                       id subMenuItem/extra/id | nothing;
                                       class subMenuItem/extra/class | nothing;">
                       <input type="hidden" tal:replace="structure authenticator" />
-                      <button tal:attributes="title subMenuItem/description;" i18n:attributes="title"
+                      <button tal:attributes="title subMenuItem/description;
+                                              name string:${menuItem/extra/id}-${subMenuItem/extra/id};" i18n:attributes="title"
                           type="submit">
                         <img width="16"
                              height="16"
