@@ -304,7 +304,7 @@ class DisplayMenu(BrowserMenu):
                     results.append({
                         'title': title,
                         'description': '',
-                        'action': '%s/selectViewTemplate?templateId=%s' % (
+                        'action': '%s/select_default_view?templateId=%s' % (
                             folderUrl, id,),
                         'selected': False,
                         'icon': None,
@@ -385,7 +385,7 @@ class DisplayMenu(BrowserMenu):
                     results.append({
                         'title': title,
                         'description': '',
-                        'action': '%s/selectViewTemplate?templateId=%s' % (
+                        'action': '%s/select_default_view?templateId=%s' % (
                             contextUrl, id,),
                         'selected': is_selected,
                         'icon': None,
