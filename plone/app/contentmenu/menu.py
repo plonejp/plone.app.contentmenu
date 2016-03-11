@@ -68,6 +68,8 @@ class ActionsSubMenuItem(BrowserSubMenuItem):
 
     @memoize
     def available(self):
+        if not self.context_state.is_view_template():
+            return False
         actions_tool = getToolByName(self.context, 'portal_actions')
         editActions = actions_tool.listActionInfos(
             object=self.context, categories=('object_buttons',), max=1)
@@ -211,6 +213,8 @@ class DisplaySubMenuItem(BrowserSubMenuItem):
         # As we don't have the view we need to parse the url to see
         # if its folder_contents
         context = self.context
+        if not self.context_state.is_view_template():
+            return True
         if self.context_state.is_default_page():
             context = utils.parent(context)
         if not getattr(context, 'isPrincipiaFolderish', False):
@@ -677,7 +681,10 @@ class WorkflowSubMenuItem(BrowserSubMenuItem):
 
     @memoize
     def available(self):
-        return (self.context_state.workflow_state() is not None)
+        return (self.context_state.workflow_state() is not None
+                or
+                self.context_state.is_view_template()
+                )
 
     def selected(self):
         return False
