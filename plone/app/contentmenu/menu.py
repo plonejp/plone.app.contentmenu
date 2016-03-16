@@ -682,7 +682,7 @@ class WorkflowSubMenuItem(BrowserSubMenuItem):
     @memoize
     def available(self):
         return (self.context_state.workflow_state() is not None
-                or
+                and
                 self.context_state.is_view_template()
                 )
 
